@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="robots" content="noindex, nofollow">
 <title>קיצורי דרך לתוכנית ההכנה לכיתה א'</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,6 +109,24 @@
   .signature{margin-top:14px;font-family:'Rubik',sans-serif;font-weight:700;color:var(--blue-dark);}
 
   .footer-note{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center;}
+
+  /* uniform tiles + refined text (22.10.26) */
+  .grid{grid-auto-rows:1fr;}
+  .card{aspect-ratio:auto !important;min-height:112px;}
+  .card .label{font-weight:500;}
+  .card .label b{font-weight:600;}
+  .dates-list{justify-content:center;gap:8px;}
+  .date-chip{flex:0 0 calc(33.333% - 6px);text-align:center;box-sizing:border-box;padding:8px 4px;}
+  @media (max-width:520px){
+    .grid{grid-auto-rows:118px;gap:10px;}
+    .card{min-height:0;height:118px;padding:6px 6px;border-radius:16px;gap:5px;}
+    .card .icon{width:36px;height:36px;border-radius:11px;}
+    .card .icon svg{width:21px;height:21px;}
+    .card .label{font-size:12px;line-height:1.35;font-weight:500;}
+    #opening-video{grid-column:1 / -1;}
+    .date-chip{font-size:12.5px;font-weight:500;}
+  }
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:pan-x pan-y;}
 </style>
 </head>
 <body>
