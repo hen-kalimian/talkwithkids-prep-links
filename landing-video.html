@@ -36,22 +36,23 @@
 <body>
 <div id="wrap">
   <div class="video">
-    <video id="v" controls autoplay muted playsinline preload="auto" poster="welcome-prep-2-poster.jpg" src="welcome-prep-4.mp4" title="ברוכים הבאים לתוכנית ההכנה לכיתה א׳"></video>
+    <video id="v" controls muted playsinline preload="auto" poster="welcome-prep-2-poster.jpg" src="welcome-prep-4.mp4" title="ברוכים הבאים לתוכנית ההכנה לכיתה א׳"></video>
     <button id="snd" class="snd" type="button" aria-label="הפעלת קול"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9H3Zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-9v2.1a7 7 0 0 1 0 13.8V21a9 9 0 0 0 0-18Z"/></svg>לחצי להפעלת קול</button>
   </div>
 </div>
 <script>
   (function () {
     var v = document.getElementById('v'), b = document.getElementById('snd');
-    function unmute() { v.muted = false; v.volume = 1; b.style.display = 'none'; if (v.paused) { var q = v.play(); if (q && q.catch) q.catch(function () {}); } }
+    // never starts with sound: the picture starts muted when this section is reached, sound only after a click
+    var seen = false;
+    v.muted = true; v.removeAttribute('autoplay'); b.style.display = 'flex';
+    function go() { var q = v.play(); if (q && q.catch) q.catch(function () {}); }
+    function unmute() { v.muted = false; v.volume = 1; b.style.display = 'none'; if (v.paused) go(); }
     b.addEventListener('click', unmute);
     v.addEventListener('volumechange', function () { if (!v.muted) b.style.display = 'none'; });
-    // 1) try to start with sound (works when the browser allows it), 2) otherwise start muted and show the sound button
-    v.muted = false;
-    var p = v.play();
-    function muted() { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); b.style.display = 'flex'; }
-    if (p && p.catch) p.catch(muted); else if (v.paused) muted();
-    document.addEventListener('visibilitychange', function () { if (!document.hidden && v.paused && v.currentTime < 0.5) { var q = v.play(); if (q && q.catch) q.catch(function () {}); } });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !seen && !document.hidden) { seen = true; go(); } }); }, { threshold: 0.3 }).observe(v);
+    } else { seen = true; go(); }
   })();
 </script>
 </body>
