@@ -111,7 +111,7 @@ function apply(P){
   document.body.classList.toggle('special',special);
   var s=new Date(n.getFullYear(),n.getMonth(),n.getDate());s.setDate(s.getDate()+(6-s.getDay()+7)%7);
   var t=s.getDate()+'.'+(s.getMonth()+1)+'.'+String(s.getFullYear()).slice(2);
-  document.querySelectorAll('[data-nothing]').forEach(function(e){e.textContent=t});
+  document.querySelectorAll('[data-end]').forEach(function(e){e.textContent=t});
 }
 apply(P);
 fetch('promo.json?'+Date.now()).then(function(r){return r.json()}).then(apply).catch(function(){});
