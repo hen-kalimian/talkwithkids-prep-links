@@ -131,4 +131,32 @@ summary{font-weight:700;cursor:pointer;font-family:Rubik,sans-serif}
 </section>
 
 <script>(function(){var v=document.getElementById('v'),b=document.getElementById('snd');if(!v)return;function un(){v.muted=false;v.volume=1;b.style.display='none';if(v.paused){var q=v.play();if(q&&q.catch)q.catch(function(){})}}b.addEventListener('click',un);v.addEventListener('volumechange',function(){if(!v.muted)b.style.display='none'});v.muted=false;var p=v.play();function mu(){v.muted=true;var q=v.play();if(q&&q.catch)q.catch(function(){});b.style.display='flex'}if(p&&p.catch)p.catch(mu);else if(v.paused)mu()})();</script>
+<!--anim-29-10--><style id="anim-css">
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.rv.rvo{transform:none}
+.rv.in{opacity:1;transform:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.ico{animation:bob 4.6s ease-in-out infinite}
+@keyframes cta{0%,100%{box-shadow:0 8px 22px rgba(239,64,110,.28)}50%{box-shadow:0 10px 30px rgba(239,64,110,.52)}}
+a.btn{animation:cta 3.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.ico,a.btn{animation:none}}
+</style><script id="anim-js">
+(function(){try{
+if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver'in window))return;
+var sel='.card,.shot,.step,.comp,.stat,.pstat,.cmpcol,.checks li,.inclg>div,.ticks li,.faq details,.vwrap,.pvwrap,.truth,.proofs>*';
+var all=[].slice.call(document.querySelectorAll(sel));
+var els=all.filter(function(e){if(e.closest('.carousel,.snap,.vrow'))return false;var p=e.parentElement;while(p){if(p.matches&&p.matches(sel))return false;p=p.parentElement}return true});
+var cnt=new Map();
+els.forEach(function(e){
+  var par=e.parentElement,i=cnt.get(par)||0;cnt.set(par,i+1);
+  e.style.setProperty('--d',Math.min(i,5)*0.09+'s');
+  e.classList.add('rv');
+  if(e.querySelector('iframe,video'))e.classList.add('rvo');
+});
+var fired=0;
+var io=new IntersectionObserver(function(en){en.forEach(function(x){fired++;if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0.12});
+els.forEach(function(e){io.observe(e)});
+setTimeout(function(){if(!fired)els.forEach(function(e){e.classList.add('in')})},2500);
+}catch(e){}})();
+</script>
 </body></html>

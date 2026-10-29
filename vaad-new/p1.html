@@ -105,9 +105,7 @@ body{background:transparent}/*dl-29-10*/.deadline{display:block;width:fit-conten
 <section class="band white"><div class="wrap"><div class="center"><h2>בעזרת הספר תוכלי להעניק לילדי הגן...</h2></div><div class="comps"><div class="card comp"><img class="ico" src="img/art/sun.png" alt=""><h3>תְּחוּשַׁת מְסֻגָּלוּת וְרֹגַע בַּמֶּרְחָב הַגַּנִּי וּבַכִּתָּה</h3><p>הספר מעניק לילדים עוגנים רגשיים לרגעים שבהם הם מרגישים פחות בטוחים מול הקבוצה. במקום להילחץ כשהם "שוכחים", הם לומדים לנשום, להביט סביבם ולמצוא את הפתרון בעצמם, בדיוק כמו גיא.</p></div><div class="card comp"><img class="ico" src="img/art/puzzle.png" alt=""><h3>לְמִידָה מִתּוּךְ סַקְרָנוּת וְחִיּוּךְ</h3><p>במקום תרגול מאולץ, אנחנו הופכים את עולם האותיות למגרש משחקים חי ומרגש. הילדים יתחילו "לצוד" אותיות במרחבי הגן ובחוץ, מה שהופך את המוכנות לכיתה א' לחוויה של גילוי משותף, קבוצתי ומלא הנאה.</p></div><div class="card comp"><img class="ico" src="img/art/book.png" alt=""><h3>לְגַלּוֹת אֶת הַכּוֹחַ לְנַסּוֹת שׁוּב בְּחִיּוּךְ</h3><p>הילדים יקבלו כלי משמעותי לחיים – הידיעה שזה בסדר גמור לא להצליח מיד. הם ילמדו לסמוך על עצמם ולגשת לכל אתגר חדש בסקרנות ובביטחון, ללא הלחץ להספיק או להיות "כמו כולם", תוך מתן מקום לייחודיות של כל אחד ואחת מהם.</p></div></div></div></section>
 <section class="band pink"><div class="wrap"><div class="grid g2 center-i"><figure class="shot"><img src="img/v01.jpg" alt=""></figure><div class="center"><a class="btn" href="https://www.talkwithkids.co.il/product-page/book-1">לרכישת הספר במחיר מיוחד</a></div></div></div></section>
 <section class="band white"><div class="wrap"><div class="vwrap"><figure class="shot"><img src="img/v05.jpg" alt=""></figure></div></div></section>
-<section class="band pink"><div class="wrap"><div class="card story"><p class="big">כאמא ל-4 ילדים, מדריכת הורים וכקלינאית תקשורת ב-12 השנים האחרונות ומתוכן 9 שנים במשרד החינוך זיהיתי בעיות שחוזרות על עצמן:</p><p>אימהות שמתרוצצות לחפש חוברות עבודה</p>
-<p>הורים שמחפשים מורה לילד כבר מגיל 4</p>
-<p>אימהות שמכריחות את הילד ללמוד בזמן שהן לא יודעות איך ללמד</p><div class="text"><p>והן לא יודעות שיש כלי פשוט שיכול להיות זמין אצלן בבית בלי שום מאמץ.</p>
+<section class="band pink"><div class="wrap"><div class="card story"><p class="big">כאמא ל-4 ילדים, מדריכת הורים וכקלינאית תקשורת ב-12 השנים האחרונות ומתוכן 9 שנים במשרד החינוך זיהיתי בעיות שחוזרות על עצמן:</p><ul class="ticks" style="margin:14px 0 18px"><li>אימהות שמתרוצצות לחפש חוברות עבודה</li><li>הורים שמחפשים מורה לילד כבר מגיל 4</li><li>אימהות שמכריחות את הילד ללמוד בזמן שהן לא יודעות איך ללמד</li></ul><div class="text"><p>והן לא יודעות שיש כלי פשוט שיכול להיות זמין אצלן בבית בלי שום מאמץ.</p>
 <p>כלי פשוט ומסקרן שגורם לילדים לחזור אליו שוב ושוב - הכלי של גיא</p>
 <p>לכל ילד בגן מגיע זמן איכות עם הוריו, כזה שגם יקדם אותו וגם יאפשר חיבור עמוק ביניהם, בלי שום מאמץ</p>
 <p>כשילדי הגן יאחזו בספר שבחרת במיוחד עבורם, תגלי שהוא הופך לספר הכי אהוב בבית!</p>
@@ -139,4 +137,32 @@ fetch('promo.json?'+Date.now()).then(function(r){return r.json()}).then(apply).c
 document.querySelectorAll('.pv').forEach(function(w){var v=w.querySelector('video'),b=w.querySelector('.pvb');
   function go(){v.controls=true;w.classList.add('on');v.play()}
   b.addEventListener('click',go);v.addEventListener('click',function(){if(!v.controls)go()});
-  v.addEventListener('ended',function(){w.classList.remove('on');v.controls=false;v.currentTime=0});});</script></body></html>
+  v.addEventListener('ended',function(){w.classList.remove('on');v.controls=false;v.currentTime=0});});</script><!--anim-29-10--><style id="anim-css">
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.rv.rvo{transform:none}
+.rv.in{opacity:1;transform:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.ico{animation:bob 4.6s ease-in-out infinite}
+@keyframes cta{0%,100%{box-shadow:0 8px 22px rgba(239,64,110,.28)}50%{box-shadow:0 10px 30px rgba(239,64,110,.52)}}
+a.btn{animation:cta 3.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.ico,a.btn{animation:none}}
+</style><script id="anim-js">
+(function(){try{
+if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver'in window))return;
+var sel='.card,.shot,.step,.comp,.stat,.pstat,.cmpcol,.checks li,.inclg>div,.ticks li,.faq details,.vwrap,.pvwrap,.truth,.proofs>*';
+var all=[].slice.call(document.querySelectorAll(sel));
+var els=all.filter(function(e){if(e.closest('.carousel,.snap,.vrow'))return false;var p=e.parentElement;while(p){if(p.matches&&p.matches(sel))return false;p=p.parentElement}return true});
+var cnt=new Map();
+els.forEach(function(e){
+  var par=e.parentElement,i=cnt.get(par)||0;cnt.set(par,i+1);
+  e.style.setProperty('--d',Math.min(i,5)*0.09+'s');
+  e.classList.add('rv');
+  if(e.querySelector('iframe,video'))e.classList.add('rvo');
+});
+var fired=0;
+var io=new IntersectionObserver(function(en){en.forEach(function(x){fired++;if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0.12});
+els.forEach(function(e){io.observe(e)});
+setTimeout(function(){if(!fired)els.forEach(function(e){e.classList.add('in')})},2500);
+}catch(e){}})();
+</script>
+</body></html>
