@@ -24,9 +24,9 @@ const bar = `
 <section class="band white proofbar">
   <div class="wrap">
     <div class="proofs3">
-      <div class="pstat"><b dir="ltr">+250</b><span>חברות במועדון</span></div>
-      <div class="pstat"><b dir="ltr">+28,000</b><span>משפחות שרכשו את התוכניות שלי</span></div>
-      <div class="pstat"><b dir="ltr">+60,000</b><span>עוקבים ברשתות</span></div>
+      <div class="pstat"><b dir="ltr">250+</b><span>חברות במועדון</span></div>
+      <div class="pstat"><b dir="ltr">28,000+</b><span>משפחות שרכשו את התוכניות שלי</span></div>
+      <div class="pstat"><b dir="ltr">60,000+</b><span>עוקבים ברשתות</span></div>
     </div>
   </div>
 </section>
