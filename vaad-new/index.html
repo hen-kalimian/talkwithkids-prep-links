@@ -129,6 +129,9 @@ p{margin:0 0 12px}.wrap{max-width:1040px;margin:0 auto;padding:0 18px}.center{te
 (function(){try{
 var P={regularPrice:39,specialPrice:36,specialUntil:'2026-10-31'};
 function il(){return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}))}
+var DEF=[{from:'2026-08-15',to:'2026-10-31',title:'במבצע תחילת שנה!'},{from:'2026-11-01',to:'2026-11-28',title:'מבצע חזרה לשגרה'},{from:'2026-11-29',to:'2026-12-12',title:'מבצע חנוכה'}];
+function p2(x){return (x<10?'0':'')+x}
+function camp(P,n){var C=P.campaigns||DEF;var d=n.getFullYear()+'-'+p2(n.getMonth()+1)+'-'+p2(n.getDate());var t='';C.forEach(function(c){if(d>=c.from&&d<=c.to)t=c.title});document.querySelectorAll('[data-campaign]').forEach(function(e){e.textContent=t;e.style.display=t?'':'none'})}
 function apply(P){
   var n=il();
   var u=P.specialUntil.split('-');var until=new Date(+u[0],+u[1]-1,+u[2],23,59,59);
@@ -137,6 +140,7 @@ function apply(P){
   var s=new Date(n.getFullYear(),n.getMonth(),n.getDate());s.setDate(s.getDate()+(6-s.getDay()+7)%7);
   var t=s.getDate()+'.'+(s.getMonth()+1)+'.'+String(s.getFullYear()).slice(2);
   document.querySelectorAll('[data-end]').forEach(function(e){e.textContent=t});
+  camp(P,n);
 }
 apply(P);
 fetch('promo.json?'+Date.now()).then(function(r){return r.json()}).then(apply).catch(function(){});
