@@ -126,7 +126,8 @@ els.forEach(function(e){
   if(e.querySelector('iframe,video'))e.classList.add('rvo');
 });
 var fired=0;
-var io=new IntersectionObserver(function(en){en.forEach(function(x){fired++;if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0.12});
+function Y(e){return e.getBoundingClientRect().top+(window.pageYOffset||0)}
+var io=new IntersectionObserver(function(en){en.forEach(function(x){fired++;if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);var y=Y(x.target);els.forEach(function(o){if(!o.classList.contains('in')&&Y(o)<=y){o.classList.add('in');io.unobserve(o)}})}})},{threshold:0.12});
 els.forEach(function(e){io.observe(e)});
 setTimeout(function(){if(!fired)els.forEach(function(e){e.classList.add('in')})},2500);
 }catch(e){}})();
