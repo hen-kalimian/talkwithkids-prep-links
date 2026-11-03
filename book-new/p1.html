@@ -119,7 +119,7 @@ body{background:transparent}/*dl-29-10*/.deadline{display:block;width:fit-conten
 (function(){try{
 var P={regularPrice:49,specialPrice:46,specialUntil:'2026-10-31'};
 function il(){return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}))}
-var DEF=[{from:'2026-08-15',to:'2026-10-31',title:'במבצע תחילת שנה!'},{from:'2026-11-01',to:'2026-11-28',title:'מבצע חזרה לשגרה'},{from:'2026-11-29',to:'2026-12-12',title:'מבצע חנוכה'}];
+var DEF=[{from:'2026-08-15',to:'2026-10-31',title:'במבצע תחילת שנה!'},{from:'2026-11-01',to:'2026-11-28',title:'נובמבר סייל'},{from:'2026-11-29',to:'2026-12-12',title:'מבצע חנוכה'}];
 function p2(x){return (x<10?'0':'')+x}
 function camp(P,n){var C=P.campaigns||DEF;var d=n.getFullYear()+'-'+p2(n.getMonth()+1)+'-'+p2(n.getDate());var t='';C.forEach(function(c){if(d>=c.from&&d<=c.to)t=c.title});document.querySelectorAll('[data-campaign]').forEach(function(e){e.textContent=t;e.style.display=t?'':'none'})}
 function apply(P){
