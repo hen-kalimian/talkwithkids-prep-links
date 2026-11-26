@@ -66,12 +66,13 @@ body = f'''
  </div>
 </div></section>
 
-<section class="band pink"><div class="wrap narrow center">
- <h2>"נו, מה את אומרת? הוא מוכן לכיתה א'?"</h2>
- <p>אמא עומדת מולך ומחכה לתשובה. את מרגישה שיש משהו שצריך לחזק, אולי באותיות, אולי בצלילים, אולי בחשבון.</p>
- <p>ואז מתחילות השאלות שלך: מה בדיוק לבדוק? באיזה סדר? איך לרשום תוך כדי, ואיך לנסח להורים תמונה ברורה ומכבדת?</p>
- <figure class="quote card"><blockquote>"אני נתקלת בכל שנה בפערים בין הילדים ובקשיים שונים: חלקם לא מצליחים לזכור את כל האותיות, אחרים לא את סימני הניקוד והצלילים."</blockquote><figcaption>ליעד, מחנכת כיתות א'-ב', משתתפת בהכשרה שלי</figcaption></figure>
- <p class="keyline">כשיש לך מיפוי מסודר, את מגיעה לשיחה עם ההורים עם תשובות.</p>
+<section class="band pink" id="case"><div class="wrap narrow center">
+ <h2>תארי לעצמך: מפגש מיפוי אחד, ו-20 מפגשי הכנה לכיתה א'</h2>
+ <p>הורים מגיעים אלייך עם הילד שלהם, ועם הרבה שאלות לקראת כיתה א'.</p>
+ <p>את פותחת את הכלי, והוא מוביל אותך שקופית אחרי שקופית: מה להגיד, מה לסמן ומה השלב הבא. את לא צריכה לתהות מה לבדוק ובאיזה סדר, וכל כך קל לך להעביר את המיפוי.</p>
+ <p>הילד יוצא להרפתקה, ההורים רואים אותו נהנה ומשתף פעולה, ובסוף הם מקבלים ממך דוח ברור ומקצועי.</p>
+ <p>הם כל כך מתרשמים, שהם סוגרים איתך 20 מפגשי הכנה לכיתה א'.</p>
+ <p class="keyline">ככה מפגש מיפוי אחד יכול להפוך לתהליך שלם</p>
 </div></section>
 
 <section class="band white"><div class="wrap">
@@ -285,7 +286,7 @@ def key_el(m):
     return f'<{tag}{attr} data-k="{k}">{OV.get(k, inner)}</{tag}>'
 body = re.sub(r'<(h1|h2|h3|p|li|summary|figcaption|blockquote|button|footer|em|span|a)((?:\s[^>]*)?)>((?:(?!<\1[\s>]|<img|<div|<span class="num).)*?)</\1>', key_el, body, flags=re.S)
 json.dump(ORIG, open('orig.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-RETIRED = {'t6e530d13c4'}  # הכותרת הארוכה פוצלה לפי בקשת חן לכותרת ולכותרת משנה
+RETIRED = {'t6e530d13c4', 't529cbbc684'}  # הכותרת הארוכה פוצלה לפי בקשת חן לכותרת ולכותרת משנה
 lost = [k for k in OV if k not in ORIG and k not in RETIRED]
 if lost: print('WARNING: edits without a matching text:', lost)
 html = ('<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
