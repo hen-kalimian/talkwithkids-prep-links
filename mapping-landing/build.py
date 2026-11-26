@@ -53,10 +53,11 @@ body = f'''
  <div class="heroGrid">
   <div>
    <span class="badge">לגננות, למורות ולנשות טיפול</span>
-   <h1>כלי מיפוי שיעזור לך לבדוק את רמת המוכנות של ילדי הגן לקראת כיתה א' ולהעביר את המידע בצורה מקצועית להורים</h1>
+   <h1>כלי מיפוי דיגיטלי ומשחקי לקראת כיתה א' <span class="h1b">ובהדרכת הבונוס: איך להפוך את פגישת המיפוי לפגישה שממלאת לך קבוצות</span></h1>
   </div>
   <div class="heroImg">{vault()}</div>
   <div class="heroTxt">
+   <p class="subh">הכלי יעזור לך לבדוק בקלות את רמת המוכנות של ילדי הגן ולהעביר את המידע להורים בצורה מקצועית</p>
    <p class="lead">שקופית אחרי שקופית: מה להגיד לילד, מה לסמן, ובסוף דוח מסודר שאפשר להגיש להורים.</p>
    <span class="gift">ובבונוס: מיפוי לכיתות א-ב-ג</span><br>
    <span class="deadline">{LAUNCH}</span>
@@ -103,6 +104,14 @@ body = f'''
  <div class="center appx"><h3>והנספח: כל המשימות שהילד ביצע</h3>
  <p class="sub">הכתיבה של הילד, הסימונים וההערות שלך, בדף אחד.</p>
  <div class="tall">{shot('appendix', 'דוגמה לנספח עם הכתיבה של הילד והסימונים', 'דוגמה מתוך מיפוי שמילאתי, עם שם בדוי')}</div></div>
+ {cta()}
+</div></section>
+
+<section class="band pink" id="grow"><div class="wrap narrow center">
+ {ico('chat')}<h2>המיפוי הוא כלי השיווק החזק ביותר שלנו</h2>
+ <p class="lead">והוא עוזר לנו למלא קבוצות הכנה לכיתה א'.</p>
+ <div class="steps grow">{step(1, 'נזמין את ההורים למפגש מיפוי', 'מפגש שבו הילד יוצא להרפתקה, וההורים מכירים אותנו ואת הדרך שבה אנחנו עובדות.')}{step(2, 'ההורים יגלו את סוד הקסם שלנו', 'הם יראו ילד שנהנה ומשתף פעולה, ויקבלו תמונה ברורה ומקצועית על מה שהוא כבר יודע ומה השלב הבא שלו.')}{step(3, 'יתאהבו בשיטה', 'וכך ירצו להירשם לקבוצה, ורק אלינו.')}</div>
+ <p class="keyline">ובהדרכת הבונוס תגלי איך להפוך את פגישת המיפוי לפגישה שבסופה ההורים רוצים להירשם לקבוצה</p>
  {cta()}
 </div></section>
 
@@ -231,6 +240,9 @@ footer{text-align:center;font-size:14px;color:var(--soft);padding:20px 12px}
 .vcf{position:absolute;inset:0;pointer-events:none;z-index:4}
 .vcf i{position:absolute;top:-6%;width:1.8cqw;height:3cqw;border-radius:.4cqw;animation:vfall linear forwards}
 @keyframes vfall{to{top:106%;transform:rotate(700deg)}}
+.grow{text-align:right;margin-top:18px}.grow .step{background:#fff}
+.h1b{display:block;margin-top:8px;font-size:.74em;line-height:1.35;color:var(--deep);text-wrap:balance}.subh{font:700 clamp(18px,2.2vw,22px)/1.5 Rubik,Arial,sans-serif;color:var(--ink);margin-bottom:8px}.heroTxt .lead{font-size:clamp(16px,1.7vw,18px);font-weight:600}
+@media(min-width:821px) and (max-height:720px){.logo{height:52px;margin-bottom:6px}.hero{padding-top:6px;padding-bottom:20px}}
 .wide{max-width:760px;margin:20px auto 0}.appx{margin-top:34px}.tall{max-width:560px;margin:10px auto 0}
 .bon p{margin-bottom:10px}.games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}.games img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border:2px solid var(--line);border-radius:12px;display:block}
 @media(max-width:820px){.vh{max-width:520px;margin:0 auto}body{font-size:17px;padding-bottom:76px}.band{padding:28px 0}.heroGrid{grid-template-columns:1fr;grid-template-areas:"t" "i" "x";gap:12px;text-align:center}.g2,.trio{grid-template-columns:1fr}
@@ -273,7 +285,8 @@ def key_el(m):
     return f'<{tag}{attr} data-k="{k}">{OV.get(k, inner)}</{tag}>'
 body = re.sub(r'<(h1|h2|h3|p|li|summary|figcaption|blockquote|button|footer|em|span|a)((?:\s[^>]*)?)>((?:(?!<\1[\s>]|<img|<div|<span class="num).)*?)</\1>', key_el, body, flags=re.S)
 json.dump(ORIG, open('orig.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-lost = [k for k in OV if k not in ORIG]
+RETIRED = {'t6e530d13c4'}  # הכותרת הארוכה פוצלה לפי בקשת חן לכותרת ולכותרת משנה
+lost = [k for k in OV if k not in ORIG and k not in RETIRED]
 if lost: print('WARNING: edits without a matching text:', lost)
 html = ('<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta name="robots" content="noindex,nofollow"><title>כלי מיפוי למוכנות לכיתה א\' | חן קלימיאן</title>'
