@@ -47,6 +47,14 @@ steps = [
     ('לומדים משהו חדש', 'את מלמדת בזמן אמת, ובודקת אם הילד מבין, מיישם, זוכר ומתקן את עצמו.'),
 ]
 
+PAIR_SHOTS = [('ex-name', 'דוגמה למשימת כתיבת השם, עם סימון ההיגדים', 'כתיבת השם: הילד כותב, ואת מסמנת'),
+              ('ex-sounds', 'משימת כתיבה לפי הצלילים', 'כתיבה לפי הצלילים, בשתי רמות'),
+              ('ex-teach', 'בחירת משחק הלמידה בתוך כלי המיפוי', 'בדיקת יכולת למידה: בוחרים מה ללמד')]
+
+def pair(i):
+    two = ''.join(step(j + 1, *steps[j]) for j in (2 * i, 2 * i + 1))
+    return f'<div class="grid g2 mid pair"><div class="steps">{two}</div>{shot(*PAIR_SHOTS[i])}</div>'
+
 body = f'''
 <section class="band hero"><div class="wrap">
  <img class="logo" src="img/logo.png" alt="חן קלימיאן, לדבר עם ילדים">
@@ -79,10 +87,7 @@ body = f'''
 <section class="band white"><div class="wrap">
  <div class="center">{ico('pencil')}<h2>ככה נראה המיפוי מגן חובה ועד אמצע כיתה א'</h2>
  <p class="sub">בכל שקופית מופיעים המשפט שאומרים לילד והפריטים לסימון: הצליח, בעזרה, לא הצליח.</p></div>
- <div class="grid g2">
-  <div class="steps">{''.join(step(i + 1, t, p) for i, (t, p) in enumerate(steps))}</div>
-  <div class="side">{shot('phonetic', 'משימת כתיבה לפי הצלילים', 'כתיבה לפי הצלילים, בשתי רמות')}{shot('letters', 'משימת זיהוי אותיות', 'זיהוי אותיות בהצבעה')}</div>
- </div>
+ <div class="pairs">{''.join(pair(i) for i in range(3))}</div>
  {cta()}
 </div></section>
 
@@ -246,6 +251,7 @@ footer{text-align:center;font-size:14px;color:var(--soft);padding:20px 12px}
 .h1b{display:block;margin-top:8px;font-size:.74em;line-height:1.35;color:var(--deep);text-wrap:balance}.subh{font:700 clamp(18px,2.2vw,22px)/1.5 Rubik,Arial,sans-serif;color:var(--ink);margin-bottom:8px}.heroTxt .lead{font-size:clamp(16px,1.7vw,18px);font-weight:600}
 @media(min-width:821px) and (max-height:720px){.logo{height:52px;margin-bottom:6px}.hero{padding-top:6px;padding-bottom:20px}}
 .wa{display:block;width:100%;max-width:600px;height:auto;margin:6px auto 0;box-shadow:0 10px 26px rgba(184,35,107,.16)}
+.pairs{display:grid;gap:30px;margin-top:18px}.pair{margin-top:0}.pair .shot{max-width:520px;width:100%;justify-self:center}
 .wide{max-width:760px;margin:20px auto 0}.appx{margin-top:34px}.tall{max-width:560px;margin:10px auto 0}
 .bon p{margin-bottom:10px}.games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}.games img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border:2px solid var(--line);border-radius:12px;display:block}
 @media(max-width:820px){.vh{max-width:520px;margin:0 auto}body{font-size:17px;padding-bottom:76px}.band{padding:28px 0}.heroGrid{grid-template-columns:1fr;grid-template-areas:"t" "i" "x";gap:12px;text-align:center}.g2,.trio{grid-template-columns:1fr}
