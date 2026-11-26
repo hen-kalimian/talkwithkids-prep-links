@@ -102,7 +102,7 @@ body = f'''
   <div>{shot('kbletters', 'שיום אותיות במיפוי כיתות א עד ג', 'מתחילים בכתיב, וממשיכים לפי הקושי')}</div>
   <div>{shot('kbsum', 'סיכום ומסקנות במיפוי כיתות א עד ג', 'סיכום, מטרות והמלצות במקום אחד')}</div>
  </div>
- <div class="trio"><span>{ico('puzzle')}כתיב פונטי ואותיות</span><span>{ico('target')}הברות לפי סימני ניקוד ומילות תפל</span><span>{ico('chat')}כתיבה עם ניקוד וקריאה בקול</span></div>
+ <div class="trio"><span>{ico('puzzle')}<em>כתיב פונטי ואותיות</em></span><span>{ico('target')}<em>הברות לפי סימני ניקוד ומילות תפל</em></span><span>{ico('chat')}<em>כתיבה עם ניקוד וקריאה בקול</em></span></div>
 </div></section>
 
 <section class="band pink"><div class="wrap">
@@ -171,7 +171,7 @@ p{margin:0 0 12px}.wrap{max-width:1080px;margin:0 auto;padding:0 18px}.narrow{ma
 .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--f);color:#fff;font:800 17px Rubik,Arial;display:flex;align-items:center;justify-content:center}
 .side{display:grid;gap:18px;align-content:center}
 .ticks{list-style:none;padding:0;margin:10px 0 16px;display:grid;gap:8px;text-align:right}.ticks li{position:relative;background:#FFF2F5;border-radius:14px;padding:8px 40px 8px 14px;font-weight:700}.ticks li:before{content:"\\2713";position:absolute;right:14px;top:8px;color:var(--f);font-weight:800}
-.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.trio span{background:#fff;border:2px solid var(--line);border-radius:20px;padding:14px;text-align:center;font-weight:800;color:var(--deep)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.trio em{font-style:normal;display:block}.trio span{background:#fff;border:2px solid var(--line);border-radius:20px;padding:14px;text-align:center;font-weight:800;color:var(--deep)}
 .heroPhoto{max-width:420px;width:100%;margin:0 auto}
 .offer{max-width:600px;margin:0 auto;border-width:3px;background:linear-gradient(180deg,#fff,#FEF6F5)}
 .price{font:800 30px Rubik,Arial;color:var(--deep);margin:0;line-height:1.2}.price b{font-size:64px}
@@ -193,6 +193,22 @@ addEventListener('scroll',upd,{passive:true});upd();
 document.querySelectorAll('.btn,#offer').forEach(function(e){io.observe(e)});
 '''
 body = body.replace("כיתה א'", "כיתה א'")
+# --- עריכת טקסט: לכל קטע טקסט מפתח קבוע, והתיקונים של חן (texts.json) גוברים על הטקסט המקורי
+import re, json, hashlib
+OV = json.load(open('texts.json', encoding='utf-8')) if os.path.exists('texts.json') else {}
+ORIG = {}
+def key_el(m):
+    tag, attr, inner = m.group(1), m.group(2), m.group(3)
+    if tag == 'span' and not re.search(r'class="(badge|gift|deadline)"', attr): return m.group(0)
+    if tag == 'a' and not re.search(r'class="(btn|sticky)"', attr): return m.group(0)
+    if 'id="buynote"' in attr or not inner.strip(): return m.group(0)
+    k = 't' + hashlib.md5(inner.encode('utf-8')).hexdigest()[:10]
+    ORIG[k] = inner
+    return f'<{tag}{attr} data-k="{k}">{OV.get(k, inner)}</{tag}>'
+body = re.sub(r'<(h1|h2|h3|p|li|summary|figcaption|blockquote|button|footer|em|span|a)((?:\s[^>]*)?)>((?:(?!<\1[\s>]|<img|<div|<span class="num).)*?)</\1>', key_el, body, flags=re.S)
+json.dump(ORIG, open('orig.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+lost = [k for k in OV if k not in ORIG]
+if lost: print('WARNING: edits without a matching text:', lost)
 html = ('<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta name="robots" content="noindex,nofollow"><title>כלי מיפוי למוכנות לכיתה א\' | חן קלימיאן</title>'
         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
