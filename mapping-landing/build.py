@@ -27,6 +27,12 @@ def ico(n):
 def cta(t='אני רוצה את כלי המיפוי'):
     return f'<a class="btn" href="#offer">{t}</a>'
 
+def adv():
+    xs = [14, 28, 42, 56, 70]   # תחנות בשביל, משמאל לימין
+    d = [4, 8, 2, 6, 1]         # ספרות להדגמה בלבד, לא הקוד של הכלי
+    st = ''.join(f'<i class="st{" on" if i < 2 else ""}" style="left:{x}%"></i><i class="dg{" on" if i < 2 else ""}" style="left:{x}%">{d[i]}</i>' for i, x in enumerate(xs))
+    return f'<div class="adv" role="img" aria-label="הילדה הולכת בשביל ביער הקסום, אוספת ספרות ומגיעה אל תיבת האוצר">{st}<img class="achest" src="img/chest-closed.png" alt=""><img class="akid" src="img/hero-girl.png" alt="" style="left:28%"></div>'
+
 def step(i, t, p):
     return f'<div class="step"><span class="num">{i}</span><div><h3>{t}</h3><p>{p}</p></div></div>'
 
@@ -48,7 +54,7 @@ body = f'''
    <span class="badge">לגננות, למורות ולנשות טיפול</span>
    <h1>כלי מיפוי שיעזור לך לבדוק את רמת המוכנות של ילדי הגן לקראת כיתה א' ולהעביר את המידע בצורה מקצועית להורים</h1>
   </div>
-  <div class="heroImg">{shot('vault', 'מסך הכספת בכלי המיפוי')}</div>
+  <div class="heroImg">{adv()}</div>
   <div class="heroTxt">
    <p class="lead">שקופית אחרי שקופית: מה להגיד לילד, מה לסמן, ובסוף דוח מסודר שאפשר להגיש להורים.</p>
    <span class="gift">ובבונוס: מיפוי לכיתות א-ב-ג</span><br>
@@ -80,6 +86,7 @@ body = f'''
  {ico('key')}<h2>בשביל הילד זו הרפתקה עם כספת</h2>
  <p>בתחילת המפגש מחכה לו כספת עם הפתעה. על כל משימה שעשיתם יחד הוא מקבל ספרה, ובסוף מקיש את הקוד ופותח אותה.</p>
  <p class="keyline">הילד מתקדם בשביל הספרה הבאה, ואת רואה מה הוא יודע.</p>
+ <div class="wide">{shot('journey', 'בחירת דמות והשביל ביער הקסום בתוך כלי המיפוי', 'כך זה נראה בכלי: הילד בוחר דמות ויוצא לדרך')}</div>
 </div></section>
 
 <section class="band white"><div class="wrap">
@@ -92,17 +99,34 @@ body = f'''
   </div>
   <div>{shot('report', 'דוגמה לדוח סיכום מיפוי', 'דוגמה לדוח, עם ילדה בדויה')}</div>
  </div>
+ <div class="center appx"><h3>והנספח: כל המשימות שהילד ביצע</h3>
+ <p class="sub">הכתיבה של הילד, הסימונים וההערות שלך, בדף אחד.</p>
+ <div class="tall">{shot('appendix', 'דוגמה לנספח עם הכתיבה של הילד והסימונים', 'דוגמה מתוך מיפוי שמילאתי, עם שם בדוי')}</div></div>
  {cta()}
 </div></section>
 
 <section class="band sky"><div class="wrap">
  <div class="center">{ico('gift')}<span class="gift">בונוס</span>
  <h2>כלי מיפוי לילדי כיתות א-ב-ג שעדיין לא רכשו קריאה שוטפת, עם סיכום ומטרות מאורגנות לך ולהורים</h2></div>
+ <div class="wide">{shot('nonsense', 'משימת קריאת מילות תפל במיפוי לילדי כיתות א עד ג', 'קריאת מילות תפל: ככה רואים איך הילד קורא בלי לנחש')}</div>
  <div class="grid g2">
   <div>{shot('kbletters', 'שיום אותיות במיפוי כיתות א עד ג', 'מתחילים בכתיב, וממשיכים לפי הקושי')}</div>
   <div>{shot('kbsum', 'סיכום ומסקנות במיפוי כיתות א עד ג', 'סיכום, מטרות והמלצות במקום אחד')}</div>
  </div>
  <div class="trio"><span>{ico('puzzle')}<em>כתיב פונטי ואותיות</em></span><span>{ico('target')}<em>הברות לפי סימני ניקוד ומילות תפל</em></span><span>{ico('chat')}<em>כתיבה עם ניקוד וקריאה בקול</em></span></div>
+</div></section>
+
+<section class="band mint"><div class="wrap">
+ <div class="center">{ico('key')}<span class="gift">ועוד בונוסים</span><h2>מה מחכה לך יחד עם המיפוי</h2></div>
+ <div class="grid g2">
+  <div class="card bon center"><h3>שיעור בן 90 דקות: "מיפוי 5 השלבים בשיטת הכספת"</h3>
+   <p>בשיעור אני מסבירה איך להשתמש במיפוי, ואיך להשתמש בו גם כדי לגייס את ההורים לרצות לעבוד איתנו ולהירשם לקבוצות הכנה לכיתה א' או לשיעורים פרטיים.</p>
+   <p class="keyline">ונלמד את סודות השיווק והמכירה</p></div>
+  <div class="card bon center"><h3>2 משחקים דיגיטליים להקניית חומר חדש בשיטת "קוראים בקלות"</h3>
+   <p>לחלק החמישי של המפגש: לומדים את האות ג או ה, או קמץ ופתח. המשחק נפתח בתוך המיפוי, ואחר כך מסמנים אם הילד הבין והטמיע. אפשר גם ללמד בלי משחק דיגיטלי.</p>
+   <div class="games"><img src="img/teach-g.jpg" alt="משחק האות ג"><img src="img/teach-h.jpg" alt="משחק האות ה"><img src="img/teach-kp.jpg" alt="משחק קמץ ופתח"></div></div>
+ </div>
+ {cta()}
 </div></section>
 
 <section class="band pink"><div class="wrap">
@@ -123,6 +147,9 @@ body = f'''
    <li>מיפוי מודרך מגן חובה ועד אמצע כיתה א'</li>
    <li>בונוס: מיפוי מסוף כיתה א' ועד כיתה ג'</li>
    <li>דוח סיכום עם חוזקות, קשיים, מטרות והמלצות</li>
+   <li>נספח עם כל המשימות שהילד ביצע</li>
+   <li>שיעור בן 90 דקות: "מיפוי 5 השלבים בשיטת הכספת"</li>
+   <li>2 משחקים דיגיטליים להקניית חומר חדש בשיטת "קוראים בקלות"</li>
    <li>הודעה מסכמת ותבנית דוח להורים</li>
    <li>שמירה של מיפויים קודמים, להמשך ולהשוואה</li>
   </ul>
@@ -136,6 +163,7 @@ body = f'''
 <section class="band mint"><div class="wrap narrow faq">
  <h2 class="center">שאלות שעולות</h2>
  <details><summary>לאילו גילים הכלי מתאים?</summary><p>המיפוי הראשון מיועד לגן חובה ועד אמצע כיתה א'. מיפוי הבונוס מיועד לילדים מסוף כיתה א' ועד כיתה ג' שעדיין לא רכשו קריאה שוטפת.</p></details>
+ <details><summary>אני אמא, האם אפשר להעביר את זה לילד שלי?</summary><p>הכלי נבנה עבור נשות חינוך וטיפול שעובדות עם יותר מילד אחד. אין איסור לרכוש את המיפוי אם את לא מגיעה מהתחום, אך אין צורך לעשות זאת.</p></details>
  <details><summary>איזה ציוד צריך?</summary><p>מחשב, טאבלט או טלפון עם אינטרנט. לכתיבה מומלץ טאבלט עם עט ייעודי, ואפשר גם לכתוב בדף עם עיפרון ולצלם.</p></details>
  <details><summary>חייבים לעבור את כל המשימות במפגש אחד?</summary><p>אפשר לעצור בכל רגע, לשמור ולהמשיך מאותה שקופית בפעם הבאה.</p></details>
  <details><summary>איפה נשמרים המיפויים?</summary><p>המיפויים נשמרים במכשיר, ובהתחברות אפשר לשמור אותם גם בחשבון. כדאי לשמור לעצמך כל מיפוי גם כ-PDF או כתמונה.</p></details>
@@ -179,12 +207,31 @@ p{margin:0 0 12px}.wrap{max-width:1080px;margin:0 auto;padding:0 18px}.narrow{ma
 .faq details{background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px 18px;margin-bottom:10px}.faq summary{font:800 18px Rubik,Arial;cursor:pointer}.faq details p{margin:8px 0 0}
 footer{text-align:center;font-size:14px;color:var(--soft);padding:20px 12px}
 .sticky{display:none}
+.adv{position:relative;direction:ltr;width:100%;aspect-ratio:4/3;container-type:inline-size;overflow:hidden;border-radius:24px;border:4px solid #fff;box-shadow:0 0 0 3px var(--line),0 10px 26px rgba(184,35,107,.16);background:url(img/forest.jpg) center bottom/cover no-repeat}
+.adv i{position:absolute;font-style:normal;transform:translateX(-50%)}
+.adv .st{bottom:7%;width:9%;aspect-ratio:2/1;border-radius:50%;background:rgba(255,255,255,.9);border:3px solid var(--f);box-shadow:0 0 12px 4px rgba(255,255,255,.7)}.adv .st.on{background:#FBC5D6}
+.adv .dg{bottom:52%;width:10cqw;height:10cqw;display:grid;place-items:center;border-radius:24%;background:#fff;border:3px solid var(--f);box-shadow:0 5px 12px rgba(184,35,107,.35);font:800 6cqw Rubik,Arial;color:var(--deep);opacity:0;transform:translateX(-50%) scale(.2);transition:opacity .3s,transform .5s cubic-bezier(.3,1.6,.5,1)}
+.adv .dg.on{opacity:1;transform:translateX(-50%) scale(1)}
+.adv .achest{position:absolute;left:87%;bottom:7%;width:23%;transform:translateX(-50%);filter:drop-shadow(0 0 12px rgba(255,236,170,.95))}
+.adv .akid{position:absolute;bottom:8.5%;height:40%;width:auto;transform:translateX(-50%);transform-origin:50% 100%;transition:left 1.3s linear;filter:drop-shadow(0 4px 3px rgba(60,40,50,.3))}
+.adv .akid.walk{animation:wk .45s ease-in-out infinite}
+@keyframes wk{0%,100%{transform:translateX(-50%) rotate(-3deg)}50%{transform:translateX(-50%) translateY(-5%) rotate(3deg)}}
+.wide{max-width:760px;margin:20px auto 0}.appx{margin-top:34px}.tall{max-width:560px;margin:10px auto 0}
+.bon p{margin-bottom:10px}.games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}.games img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border:2px solid var(--line);border-radius:12px;display:block}
 @media(max-width:820px){body{font-size:17px;padding-bottom:76px}.band{padding:28px 0}.heroGrid{grid-template-columns:1fr;grid-template-areas:"t" "i" "x";gap:12px;text-align:center}.g2,.trio{grid-template-columns:1fr}
 .logo{height:58px}h1{font-size:26px}
 .sticky{display:block;position:fixed;bottom:10px;left:16px;right:16px;z-index:9;text-align:center;text-decoration:none;color:#fff;font:800 18px Rubik,Arial;background:linear-gradient(135deg,var(--f),var(--f2));border-radius:40px;padding:12px;box-shadow:0 6px 18px rgba(184,35,107,.35);transition:opacity .25s}.sticky.off{opacity:0;pointer-events:none}}
 '''
 
 JS = '''
+/* הנפשת ההדגמה: הדמות הולכת בשביל, אוספת ספרות, והתיבה נפתחת */
+(function(){var a=document.querySelector('.adv');if(!a||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var k=a.querySelector('.akid'),c=a.querySelector('.achest'),st=a.querySelectorAll('.st'),dg=a.querySelectorAll('.dg'),i;
+function set(x,go){k.style.transition=go?'':'none';k.style.left=x;k.classList.toggle('walk',!!go)}
+function reset(){st.forEach(function(e){e.classList.remove('on')});dg.forEach(function(e){e.classList.remove('on')});c.src='img/chest-closed.png';set('8%',false);i=0;setTimeout(next,500)}
+function next(){if(i>=st.length){set('72%',true);setTimeout(function(){k.classList.remove('walk');c.src='img/chest-open.png';setTimeout(reset,2800)},1350);return}
+set(st[i].style.left,true);setTimeout(function(){k.classList.remove('walk');st[i].classList.add('on');dg[i].classList.add('on');i++;setTimeout(next,800)},1350)}
+new Image().src='img/chest-open.png';reset()})();
 var b=document.getElementById('buy');b.onclick=function(){document.getElementById('buynote').hidden=false};
 var s=document.querySelector('.sticky'),seen=new Set();
 var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?seen.add(e.target):seen.delete(e.target)});upd()});
